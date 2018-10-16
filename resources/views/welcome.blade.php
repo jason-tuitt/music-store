@@ -21,8 +21,14 @@
 
         <!-- Styles -->
         <style>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+
             .full-height {
-                height: 100vh;
+                min-height: 100vh;
             }
 
             .flex-center {
@@ -69,7 +75,7 @@
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary">
+       {{--  <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary">
           <a class="navbar-brand" href="#">Music Store</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -92,7 +98,7 @@
               <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
             </form>
           </div>
-        </nav>
+        </nav> --}}
         <h1></h1>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))

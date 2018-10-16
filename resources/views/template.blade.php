@@ -86,7 +86,7 @@
     </head>
     <body>
         <h1>List of @yield('h1')</h1>
-        <h2>My name is @yield('name')</h2>
+        <h2>@yield('name')</h2>
         <div class="flex-center position-ref full-height">
             @yield('table-content')
             <div class="button-container">
