@@ -17,3 +17,11 @@ Route::get('/', function () {
 Route::get('/albums', 'AlbumController@views');
 Route::get('/songs', 'SongController@views');
 Route::get('/artists','ArtistController@views');
+
+Route::post('/artists/create','ArtistController@create');
+Route::get('/artists/edit/{id}','ArtistController@edit');
+Route::patch('/artists/edit/update','ArtistController@update');
+Route::delete('/artists/delete/{id}','ArtistController@delete');
+
+Route::post('/albums/create','AlbumController@create');
+Route::get('/albums/edit/{id}', 'AlbumController@edit');

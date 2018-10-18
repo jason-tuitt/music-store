@@ -5,6 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
         <title>Laravel</title>
 
 
@@ -74,6 +79,9 @@
             .button-container{
                 width: 20%;
                 margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 10px;
             }
 
             .table-list td {
@@ -82,19 +90,60 @@
                 font-weight: 500;
             }
 
+            .cardList {
+                display: flex;
+                padding:10px;
+                flex-wrap: wrap;
+                align-items:flex-start;
+            }
+
+            .cardListItem {
+                flex:1 0 20%;
+                max-width: 20%;
+                /*width:25%;*/
+                padding: 5px 10px;
+            }
+
+            .appBody {
+                padding:20px 50px 0 50px;
+            }
+            
+            .contentBody {
+                min-height: 100vh;
+            }
+
+            .modal {
+                height:100vh;
+                width:100vw;
+                position:fixed;
+                background-color: rgba(0,0,0,.5); 
+                display:block;
+                /*z-index: 1;*/
+            }
+
+            .btn {
+                margin: 5px 5px;
+            }
+
         </style>
     </head>
     <body>
+        <div class="appBody">
         <h1>List of @yield('h1')</h1>
-        <h2>@yield('name')</h2>
-        <div class="flex-center position-ref full-height">
-            @yield('table-content')
-            <div class="button-container">
+
+        <div class="button-container">
             <a href="{{url('/')}}"><button class="back-button btn btn-outline-dark">Go back to home</button></a>
-            </div>
+        </div>
+
+        <div class="contentBody">
+            @yield('form')      
+            @yield('table-content')
+        </div>
+
+        <footer style="text-align: center;">
+        Simple Laravel Project &copy; 2018 
+        </footer>
         </div>
     </body>
-    <footer style="text-align: center;">
-        Simple Laravel Project &copy; 2018 
-    </footer>
+    
 </html>

@@ -114,7 +114,7 @@
 
             <div class="content">
                 <div class="title m-b-md" style="font-family: 'Krub', sans-serif;">
-                    Welcome to Sample Laravel Project
+                    Music Store
                 </div>
 
                 <div class="links">
