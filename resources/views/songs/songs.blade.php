@@ -1,9 +1,9 @@
 @extends('template')
 
-@section('h1', 'Albums')
+@section('h1', 'Songs')
 
 @section('form')
-	<form method="POST" action="/artists/create">
+	<form method="POST" action="/songs/create">
 		{{ csrf_field() }}
 	  <div class="form-group">
 	    <label for="song">Song Name</label>
@@ -15,7 +15,7 @@
 	  </div>
 	  <div class="form-group">
 	    <label for="album">Album</label>
-	  	<select class="custom-select">
+	  	<select class="custom-select" name="album">
 		  <option selected>Choose an album</option>
 		  @foreach($album as $key => $val)
 		  <option value="{{$val->id}}">{{$val->album_name}}</option>
@@ -23,18 +23,14 @@
 		</select>
 	  </div>
 	  <div class="form-group">
-	    <label for="artist">Year</label>
+	    <label for="artist">Artist</label>
 
-	  	<select class="custom-select">
-
+	  	<select class="custom-select" name="artist">
 		  <option value="0" selected>Choose an artist</option>
-
 		  @foreach($artist as $key => $val)
 		  <option value="{{$val->id}}">{{$val->name}}</option>
 		  @endforeach
-
 		</select>
-
 	  </div>
 	  <button type="submit" class="btn btn-primary">Submit</button>
 	</form>
@@ -42,16 +38,28 @@
 
 @section('table-content')
 <div class="cardList"> 
-	{{-- @foreach($artist as $key => $val) --}}
+	@foreach($song as $key => $val)
 		<div class="cardListItem"> 
 		<div class="card style="width: 18rem;">
 		  <img class="card-img-top" src="{{asset('img/mic.jpg')}}" alt="Card image cap">
 		  <div class="card-body">
-		    <h5 class="card-title">Header</h5>
+		    <h5 class="card-title">{{$val->song_name}}</h5>
+{{-- 		    @foreach($artist as $art)
+		    	@if($art->id == $val->artist_id)
+		    		Artist: {{$art->name}} 
+		    	@endif
+		    @endforeach --}}
+		    <p>{{ $val->album->artist->name }}</p>
+{{-- 		    @foreach($album as  $alb)
+		    	@if($alb->id == $val->album_id)
+		    		<p>Album: {{$alb->album_name}} </p>
+		    	@endif
+		    @endforeach --}}
+		    <p>{{ $val->album->album_name }}</p>
 		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 		    <div style="display:flex;">
-		    <a href="/albums/edit/" class="btn btn-outline-primary">Edit</a>
-		    <form method="POST" action="/albums/delete/">
+		    <a href="/songs/edit/{{$val->id}}" class="btn btn-outline-primary">Edit</a>
+		    <form method="POST" action="/songs/delete/{{$val->id}}">
 		    	{{ csrf_field() }}
 				{{ method_field("DELETE") }}
 		    	<button type="submit" class="btn btn-outline-primary">Delete</button>	
@@ -60,6 +68,6 @@
 		  </div>
 		</div>
 		</div>
-	{{-- @endforeach --}}
+	@endforeach
 </div>
 @endsection

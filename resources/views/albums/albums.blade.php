@@ -40,12 +40,20 @@
 		    <h5 class="card-title">{{$val->album_name}}</h5>
 		    <p class="card-text">{{$val->year}}</p>
 		    <p class="card-text">{{$val->genre}}</p>
+		    <p class="card-text">
+		    {{-- @foreach($artist as $key2 => $val2)
+		    	@if($val2->id == $val->artist_id)
+		    		Artist: {{$val2->name}}
+		    	@endif
+		    @endforeach --}}
+		    {{ $val->artist->name }}
+		    </p>
 		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 		    <div style="display:flex;">
 
 		    <a href="/albums/edit/{{ $val->id }}" class="btn btn-outline-primary">Edit</a>
 
-		    <form method="POST" action="/albums/delete/">
+		    <form method="POST" action="/albums/delete/{{$val->id}}">
 		    	{{ csrf_field() }}
 				{{ method_field("DELETE") }}
 		    	<button type="submit" class="btn btn-outline-primary">Delete</button>	

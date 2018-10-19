@@ -30,4 +30,21 @@ class AlbumController extends Controller
     	$album->save();
     	return redirect('/albums');
     }
+
+    function update(Request $request, $id) {
+        $album = Album::find($id);
+        $album->album_name = $request->album;
+        $album->year = $request->year;
+        $album->genre = $request->genre;
+        $album->artist_id = $request->artist;
+        $album->save();
+        return redirect('/albums');
+    }
+
+    function delete($id) {
+        $album = Album::find($id);
+        $album->delete();
+        return redirect('/albums');
+    }
+
 }

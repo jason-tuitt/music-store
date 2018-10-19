@@ -25,3 +25,16 @@ Route::delete('/artists/delete/{id}','ArtistController@delete');
 
 Route::post('/albums/create','AlbumController@create');
 Route::get('/albums/edit/{id}', 'AlbumController@edit');
+Route::patch('/albums/edit/{id}', 'AlbumController@update');
+Route::delete('/albums/delete/{id}','AlbumController@delete');
+
+
+Route::post('/songs/create','SongController@create');
+Route::get('/songs/edit/{id}', 'SongController@edit');
+Route::patch('/songs/edit/update','SongController@update');
+Route::delete('/songs/delete/{id}','SongController@delete');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -100,8 +100,12 @@
             .cardListItem {
                 flex:1 0 20%;
                 max-width: 20%;
-                /*width:25%;*/
+                min-height: 500px;
                 padding: 5px 10px;
+            }
+
+            .card {
+                min-height:100%;
             }
 
             .appBody {

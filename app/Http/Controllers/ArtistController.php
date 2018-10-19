@@ -26,6 +26,7 @@ class ArtistController extends Controller
     }
 
     function update(Request $request) {
+        
     	$artist = Artist::find($request->id);
     	$artist->name = $request->newartist;
     	$artist->save();
