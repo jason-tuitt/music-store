@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Playlist;
+use App\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlaylistController extends Controller
 {
@@ -14,7 +16,9 @@ class PlaylistController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user()->id;
+        $playlist = Playlist::where('user_id', $user)->get();
+        return view('playlists.playlists', compact('playlist'));
     }
 
     /**

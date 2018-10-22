@@ -20,13 +20,12 @@
 	  <div class="form-group">
 	    <label for="album">Album</label>
 	  	<select class="custom-select" name="album">
-		  <option selected>Choose an album</option>
 		  @foreach($album as $key => $val)
 		  <option value="{{$val->id}}" {{$val->id == $song->album_id ? 'selected':'' }}>{{$val->album_name}}</option>
 		  @endforeach
 		</select>
 	  </div>
-	  <div class="form-group">
+	 {{--  <div class="form-group">
 	    <label for="artist">Artist</label>
 
 	  	<select class="custom-select" name="artist">
@@ -36,7 +35,7 @@
 		  @endforeach
 		</select>
 
-	  </div>
+	  </div> --}}
 	  <button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 @endsection

@@ -35,6 +35,9 @@ Route::patch('/songs/edit/update','SongController@update');
 Route::delete('/songs/delete/{id}','SongController@delete');
 
 
+Route::get('/playlists', 'PlaylistController@index');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

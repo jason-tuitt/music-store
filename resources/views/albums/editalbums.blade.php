@@ -24,7 +24,6 @@
 	  <div class="form-group">
 	    <label for="artist">Year</label>
 	  	<select class="custom-select" name="artist">
-		  <option selected>Choose an artist</option>
 		  @foreach($artist as $key => $val)
 		  <option value="{{$val->id}}" {{$val->id == $album->artist_id ? 'selected':'' }}>
 		  	{{$val->name}}</option>

@@ -120,7 +120,10 @@
                 <div class="links">
                     <a href="{{ url('/albums') }}">Albums</a>
                     <a href="{{ url('/artists') }}">Artists</a>
-                    <a href="{{ url('/songs') }}">Songs</a>
+                    <a href="/songs">Songs</a>
+                    @auth
+                        <a href="/playlists">Playlists</a>
+                    @endauth
                 </div>
             </div>
         </div>
