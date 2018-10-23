@@ -16,7 +16,6 @@
 	  <div class="form-group">
 	    <label for="album">Album</label>
 	  	<select class="custom-select" name="album">
-		  <option selected>Choose an album</option>
 		  @foreach($album as $key => $val)
 		  <option value="{{$val->id}}">{{$val->album_name}}</option>
 		  @endforeach
@@ -44,6 +43,7 @@
 		  <img class="card-img-top" src="{{asset('img/mic.jpg')}}" alt="Card image cap">
 		  <div class="card-body">
 		    <h5 class="card-title">{{$val->song_name}}</h5>
+
 {{-- 		    @foreach($artist as $art)
 		    	@if($art->id == $val->artist_id)
 		    		Artist: {{$art->name}} 
@@ -57,7 +57,7 @@
 		    @endforeach --}}
 		    <p>{{ $val->album->album_name }}</p>
 		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		    <div style="display:flex;">
+		    <div style="display:flex; justify-content: center">
 		    <a href="/songs/edit/{{$val->id}}" class="btn btn-outline-primary">Edit</a>
 		    <form method="POST" action="/songs/delete/{{$val->id}}">
 		    	{{ csrf_field() }}

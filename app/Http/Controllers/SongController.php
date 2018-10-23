@@ -18,7 +18,6 @@ class SongController extends Controller
     	return view('songs.songs', compact('artist', 'album', 'song'));
     }
 
-
     function edit($id) {
 		$song = Song::find($id);
 		$artist = Artist::all();
@@ -30,7 +29,6 @@ class SongController extends Controller
     	$song = new Song;
     	$song->song_name = $request->song;
     	$song->length = $request->length;
-    	$song->artist_id = $request->artist;
     	$song->album_id = $request->album;
     	$song->save();
     	return redirect('/songs');
@@ -40,7 +38,6 @@ class SongController extends Controller
     	$song = Song::find($request->id);
     	$song->song_name = $request->song;
     	$song->length = $request->length;
-    	$song->artist_id = $request->artist;
     	$song->album_id = $request->album;
     	$song->save();
     	return redirect('/songs');

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Playlist;
-use App\Auth;
+use App\Song;
+use App\PlayListsSongs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,9 +17,10 @@ class PlaylistController extends Controller
      */
     public function index()
     {
-        $user = Auth::user()->id;
-        $playlist = Playlist::where('user_id', $user)->get();
-        return view('playlists.playlists', compact('playlist'));
+        $user_id = Auth::user()->id;
+        $playlist = Playlist::where('user_id', $user_id)->get();
+        $ps = PlayListsSongs::all();
+        return view('playlists.playlists', compact('playlist', 'ps'));
     }
 
     /**
@@ -26,9 +28,41 @@ class PlaylistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $playlist = new Playlist;
+        $playlist->playlist_name = $request->playlistname;
+        $playlist->user_id = Auth::user()->id;
+        $playlist->save();
+        return redirect('/playlists');
+    }
+
+    public function addSong($id)
+    {
+        $playlist = Playlist::find($id);
+        $song = Song::all();
+        return view('playlists.addsong', compact('playlist', 'song'));
+    }
+
+    public function addSongToPlaylist($playlist_id, $song_id)
+    {
+
+
+        $playlist = Playlist::find($playlist_id);
+        $song = Song::find($song_id);
+
+        $contains = $playlist->songs->contains($song);
+
+        if(!$contains) {
+            $ps = new PlayListsSongs;
+            $ps->song_id = $song_id;
+            $ps->playlist_id = $playlist_id;
+            $ps->save();
+        } else {
+            $p = PlayListsSongs::where('playlist_id', $playlist_id)->where('song_id', $song_id);
+            $p->delete();
+        }
+        return redirect('/playlists');
     }
 
     /**

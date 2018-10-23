@@ -36,7 +36,9 @@ Route::delete('/songs/delete/{id}','SongController@delete');
 
 
 Route::get('/playlists', 'PlaylistController@index');
-
+Route::post('/playlists/create','PlaylistController@create');
+Route::get('/playlists/addsong/{id}','PlaylistController@addSong');
+Route::post('/playlists/addsong/{playlist_id}/{song_id}','PlaylistController@addSongToPlaylist');
 
 Auth::routes();
 

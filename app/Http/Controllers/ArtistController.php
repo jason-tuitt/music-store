@@ -21,7 +21,16 @@ class ArtistController extends Controller
     function create(Request $request) {
     	$artist = new Artist;
     	$artist->name = $request->artistname;
-    	$artist->save();
+        $artist->image_path = 'img/uploaded_image/default.jpg';
+        $artist->save();
+
+        if($request->hasFile('imageartist')) {
+            $extension = $request->imageartist->getClientOriginalExtension();
+            $request->imageartist->move('img/uploaded_image/', "$artist->id.$extension");
+            $artist->image_path = "img/uploaded_image/$artist->id.$extension";
+            $artist->save();
+        }
+        
     	return redirect('/artists');
     }
 
@@ -29,6 +38,14 @@ class ArtistController extends Controller
         
     	$artist = Artist::find($request->id);
     	$artist->name = $request->newartist;
+        $rand = rand(1,1000);
+
+        if($request->hasFile('editimageartist')) {
+            $extension = $request->editimageartist->getClientOriginalExtension();
+            $request->editimageartist->move('img/uploaded_image/', "$artist->id".$rand.".$extension");
+            $artist->image_path = "img/uploaded_image/$artist->id".$rand.".$extension";
+            $artist->save();
+        }
     	$artist->save();
     	return redirect('/artists');
     }

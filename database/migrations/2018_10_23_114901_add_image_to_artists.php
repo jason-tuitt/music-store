@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PlaylistSongs extends Migration
+class AddImageToArtists extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class PlaylistSongs extends Migration
      */
     public function up()
     {
-        Schema::create('playlists_songs', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('song_id')->unsigned();
-            $table->integer('playlist_id')->unsigned();
-            $table->timestamps();
+        Schema::table('artists', function (Blueprint $table) {
+            $table->string('image_path')->after('name');
         });
     }
 
@@ -28,6 +25,8 @@ class PlaylistSongs extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('playlists_songs');
+        Schema::table('artists', function (Blueprint $table) {
+            $table->dropColumn('image_path');
+        });
     }
 }

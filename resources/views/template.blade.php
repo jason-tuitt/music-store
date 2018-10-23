@@ -98,9 +98,9 @@
             }
 
             .cardListItem {
-                flex:1 0 20%;
-                max-width: 20%;
-                min-height: 500px;
+                flex:1 0 25%;
+                max-width: 25%;
+                min-height: 400px;
                 padding: 5px 10px;
             }
 
